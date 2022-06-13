@@ -35,7 +35,7 @@ USER gstreamer_user
 ENV GST_DEBUG 4
 
 CMD gst-launch-1.0 -e udpsrc port=3100 \
-    ! application/x-rtp,media=video,clock-rate=90000,encoding-name=H264,payload=96 \
+    ! application/x-rtp,payload=96 \
     ! rtph264depay \
     ! avdec_h264 \
     ! videoconvert \
