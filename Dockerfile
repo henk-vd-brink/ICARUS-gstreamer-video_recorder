@@ -25,9 +25,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoclean
 
+WORKDIR /home/gstreamer_user
+
 RUN useradd gstreamer_user \
 	&& chown "gstreamer_user:gstreamer_user" /usr/bin/gst* -R \
+	&& chown "gstreamer_user:gstreamer_user" /home/gstreamer_user -R \
 	&& chmod g+rwx /usr/bin/gst* \
+	&& chmod g+rwx /home/gstreamer_user \
 	&& usermod -a -G video gstreamer_user
 
 USER gstreamer_user
